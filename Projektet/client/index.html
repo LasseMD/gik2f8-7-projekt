@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=edge" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+<script src="https://cdn.tailwindcss.com"></script> 
+  <link rel="shortcut icon"
+        href="data:image/x-icon;"
+        type="image/x-icon" />
+  <title>Todo-applikation</title>
+</head>
+
+<body>
+  <main id="root" class="pb-24 bg-gradient-to-t from-violet-900 to-stone-900 min-h-screen">
+    
+    <h1 class="text-center mb-14 text-5xl text-violet-50 first-letter:text-violet-500 first-letter:text-8xl font-bold" >Booklist</h1>
+
+    <!-- delen för "Söka böcker" -->
+    <section id="searchBox" class="flex-1 text-center mb-4 text-violet-50">
+      <h1 class="text-3xl p-2">Sök böcker</h1>
+                  <input class="w-1/4 placeholder-center rounded-full p-2 h-12 mx-auto text-violet-900
+                  border-violet-900 border-2 focus-within:outline-none focus:border-yellow-600 mb-2" 
+                  id="searchField" type="text" placeholder="Ange sökord"/>
+                </section>
+<!-- delen för "Söka böcker" -->
+
+    <!-- Sektion som gör att formuläret och listan kommer att hamna bredvid varandra. -->
+    <section class="flex gap-10 w-1/4 md:w-4/6 md:mx-auto bg-white bg-opacity-75 p-5 rounded-lg">
+
+
+                   
+      <section class="flex-1">
+        <h2 class="mb-6 text-3xl ">Lägg till egen bok</h2>
+<!-- Formuläret är döpt till todoForm och det namnet kan användas för att söka fram formuläret direkt i JavaScript-koden. -->
+        <form id="todoForm"
+              name="todoForm">
+          <section class="mb-2">
+            <label class="block pr-5 mb-2 text-xl"
+                   for="title">Titel</label>
+            <!-- Detta p-element är dolt från början med hjälp av tailwinds klass "hidden". Det kommer sedan att visas vid valideringsfel.
+            
+            P-elementet är previousSiblingElement till inputfälten. Det gäller för alla efterföljande p-element som ligger innan ett input-fält. Detta faktum används i script.js när ett valideringsmeddelande ska sättas här. -->
+            <p class="message text-sm text-red-700 mb-2 hidden">
+              Error message
+            </p>
+            <!-- Även benämningen på formulärets fält är av relevans eftersom de sätts som egenskap på formulärobjektet i JavaScript. Fältet nedan går alltså att nå via todoForm.title. Detta gäller även för efterföljande fält, fast via deras namn förstås. Detta gör att det är viktigt att man sätter id och name på fälten till något som är ett godkänt variabelnamn i JavaScript, alltså inte använda bindestreck eller mellanslag.              
+              -->
+            <input type="text"
+                   id="title"
+                   name="title"
+                   class="w-full rounded-md border-violet-900 border-2 focus-within:outline-none focus:border-yellow-600 px-4 py-2" />
+          </section>
+          <!-- Följande sektioner är likadana för övriga fält i formuläret; description -->
+          <section class="mb-2">
+            <label class="block pr-5 mb-2 text-xl"
+                   for="description">Författare</label>
+            <p class="message text-sm text-red-700 mb-2 hidden">
+              Error message
+            </p>
+            <textarea maxlength="500"
+                      rows="1"
+                      id="description"
+                      name="description"
+                      class="resize-none w-full rounded-md border-violet-900 border-2 focus-within:outline-none focus:border-yellow-600 px-4 py-2"></textarea>
+          </section>
+           <!-- <section class="mb-2">
+           <label class="block pr-5 mb-2 text-xl"
+                   for="title">Utförd senast</label>
+            <p class="message text-sm text-red-700 mb-2 hidden">
+              Error message
+            </p>
+            <input type="date"
+                   id="dueDate"
+                   name="dueDate"
+                   class="w-full rounded-md border-violet-900 border-2 focus-within:outline-none focus:border-yellow-600 px-4 py-2" />
+          </section> -->
+          <!-- Knappen är av typen submit för att den ska vara knuten till formulärets submit-event.  -->
+          <button name="submitTodoForm"
+                  class="rounded-md bg-violet-900 text-violet-50 hover:text-violet-900 hover:bg-yellow-50 px-4 py-1"
+                  type="submit">
+            Spara
+          </button>
+        </form>
+      </section>
+      <!-- Sektion där listan med uppgifter ska bo. Placeras bredvid formuläret. -->
+      <section class="flex-1 px-5">
+        <h2 class="mb-6 text-3xl ">Alla böcker jag vill läsa</h2>
+        <!-- Ul-element som kommer att fyllas på dynamiskt med li-element för varje uppgift i listan -->
+        <ul id="todoList">
+          <!-- Allt innanför här ska skapas dynamiskt med JavaScript, så se till att inget list-element läggs till här i denna HTML-fil.  -->
+        </ul>
+      </section>
+    </section>
+  </main>
+  <script src="Api.js"></script>
+  <script src="script.js"></script>
+  <script src="Components/BookDetail.js"></script>
+  <script src="Components/BookListItem.js"></script>
+  <script src="Components/BookList.js"></script>
+</body>
+
+</html>
