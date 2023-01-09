@@ -2,17 +2,12 @@ todoForm.title.addEventListener('keyup', (e) => validateField(e.target));
 todoForm.title.addEventListener('blur', (e) => validateField(e.target));
 todoForm.description.addEventListener('input', (e) => validateField(e.target));
 todoForm.description.addEventListener('blur', (e) => validateField(e.target));
-
-// todoForm.dueDate.addEventListener('input', (e) => validateField(e.target));
-// todoForm.dueDate.addEventListener('blur', (e) => validateField(e.target));
-
 todoForm.addEventListener('submit', onSubmit);
 
 const todoListElement = document.getElementById('todoList');
 
 let titleValid = true;
 let descriptionValid = true;
-// let dueDateValid = true;
 
 const api = new Api('http://localhost:5000/tasks');
  const api1 = new Api('https://gik2f8-labs.herokuapp.com/books');
@@ -47,16 +42,6 @@ function validateField(field) {
       }
       break;
     }
-    // case 'dueDate': {
-    //   if (value.length === 0) {
-    //     /* I videon för lektion 6 är nedanstående rad fel, det står där descriptionValid =  false;, men ska förstås vara dueDateValid = false; */
-    //     dueDateValid = false;
-    //     validationMessage = "Fältet 'Slutförd senast' är obligatorisk.";
-    //   } else {
-    //     dueDateValid = true;
-    //   }
-    //   break;
-    // }
   }
   field.previousElementSibling.innerText = validationMessage;
   /* Tailwind har en klass som heter "hidden". Om valideringsmeddelandet ska synas vill vi förstås inte att <p>-elementet ska vara hidden, så den klassen tas bort. */
@@ -111,42 +96,6 @@ function renderList() {
 	});
 }
 
-//----------------------Här är koden för listan så den sparas------------------
-
-// function renderBookList(bookList) {
-//   const existingElement = document.querySelector('.book-list');
-
-//   const searchBox = document.getElementById('searchBox');
-
-//   existingElement && searchBox.removeChild(existingElement);
-//   bookList.length > 0 && searchField.value && searchBox.insertAdjacentHTML('beforeend', BookList(bookList));
-
-//   const element = document.querySelectorAll(".book-list__item"); // Mouse target
-//   for (let i = 0; i < element.length; i++) {
-
-//     element[i].addEventListener("click", (e) => {
-//       let book = getBookDetails(e.target.id)
-//       console.log(`från script 128 ${getBookDetails}`);
-//       //  saveBook(book);
-
-//     });
-// }
-// }
-
-
-
-// function saveBook(book) {
-//   const task = {
-//     title: result.title,
-//     author: result.author
-//   };
-//   console.log(saveBook);
-//   api.create(task).then(task => {
-//     if (task) {
-//       renderList();
-//     }
-//   });
-// }
 
 function renderBookList(bookList) {
   const existingElement = document.querySelector('.book-list');
@@ -176,35 +125,6 @@ function saveBook(book) {
   });
 }
 
-
-
-
-
-
-
-// sätt det här i click 
-// function saveBook() {
-//   const task = {
-//     title: title,
-//     author: author,
-//   };
-// console.log(saveBook);
-//   api.create(task).then((task) => {
-//     if (task) {
-//       renderList();
-//     }
-//   });
-// }
-
-
-
-
-
-
-
-
-
-// använd  rednerlist funktionen  
 
 //----------------------------------Här slutar koden för spara lista 
 
@@ -282,25 +202,9 @@ function sortFinished(tasks) {
 	});
 }
 
-// function sortDueDate(tasks) {
-// 	tasks.sort((a, b) => {
-// 		if (a.dueDate < b.dueDate) {
-// 			return -1;
-// 		} else if (a.dueDate > b.dueDate) {
-// 			return 1;
-// 		} else {
-// 			return 0;
-// 		}
-// 	});
-// }
-
 function updateTask(id) {api.update(id).then((result) => renderList());}
 
 renderList();
-
-
-
-
 
 
 /*Kod från labb 1 */
@@ -323,33 +227,6 @@ searchField.addEventListener('keyup', (e) =>
   )
 );
 
-// function renderBookList(bookList) {
-//   const existingElement = document.querySelector('.book-list');
-
-//   const root = document.getElementById('root');
-
-//   existingElement && root.removeChild(existingElement);
-//   bookList.length > 0 && searchField.value && searchBox.insertAdjacentHTML('beforeend', BookList(bookList));
-
-//   const element = document.querySelectorAll(".book-list__item"); // Mouse target
-//   for (let i = 0; i < element.length; i++) {
-
-//     element[i].addEventListener("click", (e) => {
-//       let book = getBookDetails(e.target.id)
-//       // console.log(id);
-//       console.log("du har tryckt på en bok")
-//       book.then(function (result){
-//         renderBookDetail(result);
-//       })
-//     });
-    
-//     element[i].addEventListener("mouseleave", ()  => {
-        
-//         const existElement = document.getElementById("bookDetail");
-//         existElement && existElement.remove();
-//       });
-// }
-// }
 
 function renderBookDetail(bookDetail){
   const existElement = document.getElementById("bookDetail");
