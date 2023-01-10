@@ -16,6 +16,7 @@ app
 		next();
 	});
 
+	//hämtar listan 
 app.get("/tasks", async (req, res) => {
 	try {
 		const tasks = await fs.readFile("./tasks.json");
@@ -24,7 +25,7 @@ app.get("/tasks", async (req, res) => {
 		res.status(500).send({ error });
 	}
 });
-
+//Lägger till böckerna på listan 
 app.post("/tasks", async (req, res) => {
 	try {
 		const task = req.body;
@@ -51,7 +52,7 @@ app.post("/tasks", async (req, res) => {
 		res.status(500).send({ error: error.stack });
 	}
 });
-
+//tar  bort böckerna på min lista 
 app.delete("/tasks/:id", async (req, res) => {
 	try {
 		const id = req.params.id;
@@ -73,6 +74,8 @@ app.delete("/tasks/:id", async (req, res) => {
 	}
 	
 });
+
+//läser för att stryka över, uppdaterar befintligp
 app.patch("/tasks/:id", async (req, res) => {
 	try {
 		const id = req.params.id;

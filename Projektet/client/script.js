@@ -10,7 +10,6 @@ let titleValid = true;
 let descriptionValid = true;
 
 const api = new Api('http://localhost:5000/tasks');
- const api1 = new Api('https://gik2f8-labs.herokuapp.com/books');
 
 
 function validateField(field) {
@@ -83,6 +82,8 @@ function saveTask() {
   });
 }
 
+
+//----------------------------------Här börjar koden för spara lista för sökningen --> 
 function renderList() {
 	api.getAll().then((tasks) => {
 		todoListElement.innerHTML = "";
@@ -116,7 +117,8 @@ function renderBookList(bookList) {
 function saveBook(book) {
   const task = {
     title: book.title,
-    description: book.author
+    description: book.author,
+    completed: false
   };
   api.create(task).then(task => {
     if (task) {
@@ -207,7 +209,7 @@ function updateTask(id) {api.update(id).then((result) => renderList());}
 renderList();
 
 
-/*Kod från labb 1 */
+// kod som lyssnar på input och söker efter bok
 
 let bookList = [];
 

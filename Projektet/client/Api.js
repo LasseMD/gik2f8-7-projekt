@@ -41,15 +41,6 @@ class Api {
       .then((result) => result)
       .catch((err) => console.log(err));
   }
-
-//   async getBookDetails(id) {
-//     const result = await fetch
-//     (booksUrl + "/" + id)
-//     .then((result) => result.json())
-//     .catch((e) => e);
-//   console.log(result)
-//   return result;
-// }
 }
 
 
@@ -68,6 +59,7 @@ async function getAll() {
     return result;
   }
 
+//hämtar Titel och författare från api
 async function getBookDetails(id) {
 const result = await fetch(booksUrl + "/" + id)
   .then((result) => result.json())
